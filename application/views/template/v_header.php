@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png">
   <title>
-    Black Dashboard by Creative Tim
+    TA
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -42,14 +42,14 @@
         </div>
         <ul class="nav">
           <li>
-            <a href="./dashboard.html">
+            <a href="<?php echo base_url(); ?>dashboard">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
             </a>
           </li>
 
           <li>
-            <a href="nogl">
+            <a href="<?php echo base_url();?>nogl">
               <i class="tim-icons icon-pencil"></i>
               <p>Input GL</p>
             </a>
@@ -60,7 +60,10 @@
             <p>Kas</p></a>
             <ul class="collapse list-unstyled" id="kas">
               <li>
-                  <a href="#"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laba Rugi</p></a>
+                  <a href="<?php echo base_url();?>kas"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Kas</p></a>
+              </li>
+              <li>
+                  <a href="<?php echo base_url();?>laba"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laba Rugi</p></a>
               </li>
               <li>
                   <a href="#"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laba Neraca</p></a>
@@ -79,8 +82,15 @@
             <p>Member</p></a>
             <ul class="collapse list-unstyled" id="member">
               <li>
-                  <a href="#">Home 1</a>
+                  <a href="<?php echo base_url();?>member">Member</a>
               </li>
+                <li>
+                  <a href="<?php echo base_url();?>membersewa">Member Sewa</a>
+              </li>
+              <li>
+                  <a href="<?php echo base_url();?>simpananperdana">Simpanan Perdana</a>
+              </li>
+            
             </ul>
           </li>
 
@@ -89,7 +99,31 @@
             <p>Transaksi</p></a>
             <ul class="collapse list-unstyled" id="transaksi">
               <li>
-                  <a href="#">Home 1</a>
+                  <a href="<?php echo base_url();?>pinjaman">Input Pinjaman</a>
+              </li>
+              <li>
+                  <a href="<?php echo base_url();?>simpananperdana">Input Simpanan</a>
+              </li>
+               <li>
+                  <a href="<?php echo base_url();?>angsuran">Bayar Angsuran</a>
+              </li>
+               <li>
+                  <a href="<?php echo base_url();?>pinjaman">Input Invoice</a>
+              </li>
+               <li>
+                  <a href="<?php echo base_url();?>pinjaman">Input Pendapatan</a>
+              </li>
+               <li>
+                  <a href="<?php echo base_url();?>pinjaman">Input Pengeluaran</a>
+              </li>
+               <li>
+                  <a href="<?php echo base_url();?>pinjaman">Input Pinjaman</a>
+              </li>
+               <li>
+                  <a href="<?php echo base_url();?>pinjaman">Pengeluaran Simpanan</a>
+              </li>
+               <li>
+                  <a href="<?php echo base_url();?>pinjaman">Pembelian Aset</a>
               </li>
             </ul>
           </li>

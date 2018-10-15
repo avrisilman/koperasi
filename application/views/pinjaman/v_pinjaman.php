@@ -40,7 +40,7 @@
                         <th>Tenor</th>
                         <th>Jumlah Angsuran</th>
                         <th>Jasa Pinjaman</th>
-                        <th class="td-actions text-right">Action</th>
+                        <th class="td-actions text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -58,9 +58,20 @@
                         <td><?php echo number_format(($value->jmlpinjaman/$value->tenor),2,',','.');?></td>
                         <td><?php echo number_format((($value->jmlpinjaman)/100)*$value->bunga,2,',','.');?></td>
                         <td class="td-actions text-right">
+
+                          <?php if ($type == "Search") { ?>
+                            <a href="<?php echo site_url('pinjaman/angsuran/')."?pinjaman=".$value->no_pinjam; ?>">Bayar Angsuran</a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                          <?php }?>
+
+
+                       
+                          
+
                           <a href="<?php echo site_url('pinjaman/edit/')."?pinjaman=".$value->no_pinjam; ?>"><i class="tim-icons icon-pencil" ></i></a>
                           &nbsp;&nbsp;|&nbsp;&nbsp;
                           <a href="<?php echo site_url('pinjaman/delete/')."?pinjaman=".$value->no_pinjam; ?>"><i class="tim-icons icon-trash-simple"></i></a>
+                         
                         </td>
                       </tr>
                       <?php $no++;}?>

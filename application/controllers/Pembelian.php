@@ -1,22 +1,21 @@
 <?php
-class Pinjaman extends CI_controller {
+class Pembelian extends CI_controller {
 	public function __construct(){
 		parent::__construct();
 		if($this->session->userdata('sukses') != TRUE){
 			redirect('signin');
 		}else{
 			$this->load->helper(['url','form']);
-			$this->load->model('Pinjamanmodel');
+			$this->load->model('Pembelianmodel');
 			$this->load->database();
 			$this->load->library('pagination');
 		}
-		
 	}
 	
 	public function index($Starting=0){
 		$data['type']="index";
-		$config['base_url'] = base_url().'nogl/index';
-        $TotalRows = $this->Pinjamanmodel->record_count();
+		$config['base_url'] = base_url().'Pembelian/index';
+        $TotalRows = $this->Pembelianmodel->record_count();
         $config['total_rows'] = $TotalRows;
         $config['per_page'] = 5; 
         $config['num_links'] = 5;
@@ -42,57 +41,47 @@ class Pinjaman extends CI_controller {
 		$config['num_tag_close'] = '</li>';
         $this->pagination->initialize($config); 
         $data['Links'] = $this->pagination->create_links();
-        $data['pinjaman'] = $this->Pinjamanmodel->fetch_data($Starting,$TotalRecord);
-        $this->load->view('pinjaman/v_pinjaman',$data);
+        $data['pembelian'] = $this->Pembelianmodel->fetch_data($Starting,$TotalRecord);
+        $this->load->view('pembelian/v_pembelian',$data);
 	}
 
 	public function Input() {
 		$data['type']="Save";
-		$this->load->view('pinjaman/v_input', $data);
+		$this->load->view('pembelian/v_input', $data);
 	}
 
 	public function search(){
 		 $data['type']="Search";
 		 $nama =  $this->input->post('nama');
-		 $result=$this->Pinjamanmodel->search($nama);
-		 $data['pinjaman']=$result['data'];
-		 $this->load->view('pinjaman/v_pinjaman', $data);
+		 $result=$this->Pembelianmodel->search($nama);
+		 $data['pembelian']=$result['data'];
+		 $this->load->view('pembelian/v_searchpembelian', $data);
 	}
 
 	function Post() {
 		if($this->input->post('simpan')=="Save"){
-			$this->Pinjamanmodel->input();
-			redirect('pinjaman','refresh');
-		
+			$this->Pembelianmodel->input();
+			redirect('pembelian','refresh');
 		}
 		else if ($this->input->post('simpan')=="Update"){
-			$no_pinjam=$this->input->post('no_pinjam');
-			$this->Pinjamanmodel->edit($no_pinjam);
-			redirect('pinjaman','refresh');
+			$id=$this->input->post('id');
+			$this->Pembelianmodel->edit($id);
+			redirect('pembelian','refresh');
 		}
-	}
-
-	function angsuran(){
-		$no_pinjam=$this->input->get('pinjaman');
-		$result=$this->Pinjamanmodel->getEdit($no_pinjam);
-		$data['pinjaman']=$result['data'];
-		$data['type']="Bayar";
-		$this->load->view('pinjaman/v_inputangsuran', $data);
 	}
 
 	function edit(){
-		$no_pinjam=$this->input->get('pinjaman');
-		$result=$this->Pinjamanmodel->getEdit($no_pinjam);
-		$data['pinjaman']=$result['data'];
-
+		$id=$this->input->get('pembelian');
+		$result=$this->Pembelianmodel->getEdit($id);
+		$data['pembelian']=$result['data'];
 		$data['type']="Update";
-		$this->load->view('pinjaman/v_edit', $data);
+		$this->load->view('pembelian/v_edit', $data);
 	}
 
 	public function Delete() {
-		$no_pinjam=$this->input->get('pinjaman');
-		$this->Pinjamanmodel->delete($no_pinjam);
-		redirect('pinjaman','refresh');
+		$id = $this->input->get('pembelian');
+		$this->Pembelianmodel->delete($id);
+		redirect('pembelian','refresh');
 	}
 
 }

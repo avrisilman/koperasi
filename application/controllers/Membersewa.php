@@ -54,21 +54,47 @@ class Membersewa extends CI_controller {
 	public function search(){
 		 $data['type']="Search";
 		 $nama =  $this->input->post('nama');
+		
+
 		 $result=$this->Membersewamodel->search($nama);
 		 $data['member_sewa']=$result['data'];
-		 $this->load->view('membersewa/v_membersewa', $data);
+
+		 $result=$this->Membersewamodel->invoice($nama);
+		 $data['invoice']=$result['data'];
+
+		 $result=$this->Membersewamodel->pendapatan($nama);
+		 $data['pendapatan']=$result['data'];
+
+		 $this->load->view('membersewa/v_searchmembersewa', $data);
+	}
+
+	public function search_detail(){
+
+		 $result=$this->Membersewamodel->search($this->session->userdata('nama'));
+		 $data['member_sewa']=$result['data'];
+
+		 $result=$this->Membersewamodel->invoice($this->session->userdata('nama'));
+		 $data['invoice']=$result['data'];		 
+
+		 $this->load->view('membersewa/v_searchmembersewa', $data);
 	}
 
 	function Post() {
+		$no_sewa=$this->input->post('no_sewa');
 		if($this->input->post('simpan')=="Save"){
 			$this->Membersewamodel->input();
 			redirect('membersewa','refresh');
-		
 		}
 		else if ($this->input->post('simpan')=="Update"){
-			$no_sewa=$this->input->post('no_sewa');
 			$this->Membersewamodel->edit($no_sewa);
 			redirect('membersewa','refresh');
+		}elseif ($this->input->post('simpan')=="Input Invoice") {
+			$this->session->set_userdata('nama',$no_sewa);
+			$this->Membersewamodel->inputInvoice($no_sewa);
+			redirect('membersewa/search_detail','refresh');
+		}elseif ($this->input->post('simpan')=="Input Pendapatan") {
+			$this->Membersewamodel->inputPendapatan();
+			redirect('membersewa/search','refresh');
 		}
 	}
 
@@ -76,15 +102,46 @@ class Membersewa extends CI_controller {
 		$no_sewa=$this->input->get('member_sewa');
 		$result=$this->Membersewamodel->getEdit($no_sewa);
 		$data['member_sewa']=$result['data'];
-
 		$data['type']="Update";
 		$this->load->view('membersewa/v_edit', $data);
+	}
+
+	function inputInvoice(){
+		$no_sewa=$this->input->get('member_sewa');
+		$data['nogl'] = $this->Membersewamodel->change_category();
+		$result=$this->Membersewamodel->getEdit($no_sewa);
+		$data['member_sewa']=$result['data'];
+
+		$data['type']="Input Invoice";
+		$this->load->view('membersewa/v_inputinvoice', $data);
+	}
+
+	function inputPendapatan(){
+		$no_invoice=$this->input->get('invoice');
+		$result=$this->Membersewamodel->getInvoice($no_invoice);
+		$data['invoice']=$result['data'];
+
+		$data['type']="Input Pendapatan";
+		$this->load->view('membersewa/v_inputpendapatan', $data);
 	}
 
 	public function Delete() {
 		$no_sewa=$this->input->get('member_sewa');
 		$this->Membersewamodel->delete($no_sewa);
 		redirect('membersewa','refresh');
+	}
+
+	public function Deleteinvoice() {
+		$no_invoice=$this->input->get('invoice');
+		$no_sewa = $this->session->userdata('no_sewa');
+		$this->Membersewamodel->Deleteinvoice($no_invoice);
+		redirect('membersewa/search','refresh');
+	}
+
+	public function DeletePendapatan() {
+		$no_tran=$this->input->get('pendapatan');
+		$this->Membersewamodel->DeletePendapatan($no_tran);
+		redirect('membersewa/search','refresh');
 	}
 
 }

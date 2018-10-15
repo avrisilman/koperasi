@@ -60,19 +60,19 @@
             <p>Kas</p></a>
             <ul class="collapse list-unstyled" id="kas">
               <li>
-                  <a href="<?php echo base_url();?>kas"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Kas</p></a>
+                  <a href="<?php echo base_url();?>kas"><p>Add Kas</p></a>
               </li>
               <li>
-                  <a href="<?php echo base_url();?>laba"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laba Rugi</p></a>
+                  <a href="<?php echo base_url();?>laba"><p>Laba Rugi</p></a>
               </li>
               <li>
-                  <a href="#"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laba Neraca</p></a>
+                  <a href="#"><p>Laba Neraca</p></a>
               </li>
                  <li>
-                  <a href="#"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHU</p></a>
+                  <a href="#"><p>SHU</p></a>
               </li>
                  <li>
-                  <a href="#"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHU By Member</p></a>
+                  <a href="#"><p>SHU By Member</p></a>
               </li>
             </ul>
           </li>
@@ -114,7 +114,7 @@
                   <a href="<?php echo base_url();?>pinjaman">Input Pendapatan</a>
               </li>
                <li>
-                  <a href="<?php echo base_url();?>pinjaman">Input Pengeluaran</a>
+                  <a href="<?php echo base_url();?>Pengeluaran">Input Pengeluaran</a>
               </li>
                <li>
                   <a href="<?php echo base_url();?>pinjaman">Input Pinjaman</a>
@@ -123,7 +123,7 @@
                   <a href="<?php echo base_url();?>pinjaman">Pengeluaran Simpanan</a>
               </li>
                <li>
-                  <a href="<?php echo base_url();?>pinjaman">Pembelian Aset</a>
+                  <a href="<?php echo base_url();?>pembelian">Pembelian Aset</a>
               </li>
             </ul>
           </li>

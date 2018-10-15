@@ -35,7 +35,7 @@ class Pinjamanmodel extends CI_Model{
     }
 
 	function search($nama){
-		$qry  = "SELECT A.*, B.* from member A join pinjaman B on A.member_id=B.member_id where A.nama='%$nama%'";
+		$qry  = "SELECT A.*, B.* from member A join pinjaman B on A.member_id=B.member_id where A.nama like '%$nama%'";
 
 		$query = $this->db->query($qry);
 		$result['data']=$query->result();

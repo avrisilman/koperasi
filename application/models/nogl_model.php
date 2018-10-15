@@ -16,7 +16,9 @@ class nogl_model extends CI_Model{
 	}
 
 	public function record_count() {
-        return $this->db->count_all("nogl");
+        //return $this->db->count_all("nogl");
+       $query = $this->db->query('SELECT * FROM nogl');  
+		return $query->num_rows();
     }
     public function fetch_data($Starting,$TotalRecord) {
         $query = $this->db->query("SELECT * from nogl limit $Starting,$TotalRecord");

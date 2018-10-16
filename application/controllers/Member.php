@@ -56,7 +56,43 @@ class Member extends CI_controller {
 		 $nama =  $this->input->post('nama');
 		 $result=$this->member_model->search($nama);
 		 $data['member']=$result['data'];
-		 $this->load->view('member/v_member', $data);
+
+		 $result=$this->member_model->simpanan($nama);
+		 $data['angsuran']=$result['data'];
+
+		 $this->load->view('member/v_searchmember', $data);
+	}
+
+	function Inputpinjaman(){
+		$member_id = ($this->uri->segment(3) != '' ? $this->uri->segment(3): 0);
+		$this->session->set_userdata('member_id',$member_id);
+		$data['type']="Save";
+		$this->load->view('pinjaman/v_input', $data);
+	}
+
+	function Inputsimpanan(){
+		$member_id = ($this->uri->segment(3) != '' ? $this->uri->segment(3): 0);
+		$this->session->set_userdata('member_id',$member_id);
+		$data['type']="Save";
+		$this->load->view('perdana/v_input', $data);
+	}
+
+
+	public function search_detail(){
+
+		 $result=$this->member_model->search($this->session->userdata('member_id'));
+		 $data['member']=$result['data'];
+
+		 $result=$this->member_model->simpanan($this->session->userdata('member_id'));
+		 $data['angsuran']=$result['data'];
+
+		 $this->load->view('member/v_searchmember', $data);
+	}
+
+	function cekpinjaman(){
+		$member_id=$this->input->get('member');
+		$this->session->set_userdata('member_id',$member_id);
+		$result=$this->member_model->cekmember($this->session->userdata('member_id'));
 	}
 
 	function Post() {

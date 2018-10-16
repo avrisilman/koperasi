@@ -32,12 +32,12 @@
                     <thead class=" text-primary">
                       <tr>
                         <th>No</th>
-                        <th>No. Karyawan</th>
+                      <!--   <th>No. Karyawan</th> -->
                         <th>Nama</th>
                         <th>Jenis Kelamin</th>
                         <th>Departemen</th>
                         <th>Status</th>
-                        <th class="td-actions text-right">Action</th>
+                       <!--  <th class="td-actions text-right">Action</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -47,16 +47,16 @@
                       ?> 
                       <tr>
                         <td><?php echo $no;?></td>
-                        <td><?php echo $value->member_id;?></td>
+                       <!--  <td><?php echo $value->member_id;?></td> -->
                         <td><?php echo $value->nama;?></td>
                         <td><?php echo $value->sex;?></td>
                         <td><?php echo $value->dept;?></td>
                         <td><?php echo $value->aktif;?></td>
-                        <td class="td-actions text-right">
+                        <!-- <td class="td-actions text-right">
                           <a href="<?php echo site_url('member/edit/')."?member=".$value->member_id; ?>"><i class="tim-icons icon-pencil" ></i></a>
                           &nbsp;&nbsp;|&nbsp;&nbsp;
                           <a href="<?php echo site_url('member/delete/')."?member=".$value->member_id; ?>"><i class="tim-icons icon-trash-simple"></i></a>
-                        </td>
+                        </td> -->
                       </tr>
                       <?php $no++;}?>
                     </tbody>

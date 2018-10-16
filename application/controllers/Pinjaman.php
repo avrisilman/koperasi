@@ -47,28 +47,73 @@ class Pinjaman extends CI_controller {
 	}
 
 	public function Input() {
+		/*$member_id=$this->input->get('member');
+		$this->session->set_userdata('member_id',$member_id);
+	*/
 		$data['type']="Save";
 		$this->load->view('pinjaman/v_input', $data);
 	}
 
 	public function search(){
+
 		 $data['type']="Search";
 		 $nama =  $this->input->post('nama');
 		 $result=$this->Pinjamanmodel->search($nama);
 		 $data['pinjaman']=$result['data'];
-		 $this->load->view('pinjaman/v_pinjaman', $data);
+		// $this->load->view('pinjaman/v_pinjaman', $data);
+		 // angsuran
+		 $result=$this->Pinjamanmodel->search_angsuran($nama);
+		 $data['angsuran']=$result['data'];
+		 // withdrawal
+		 $result=$this->Pinjamanmodel->withdrawal($nama);
+		 $data['withdrawal']=$result['data'];
+		 // sum total
+		 $result=$this->Pinjamanmodel->sum_angsuran($nama);
+		 $data['sum']=$result['data'];
+		 // sum witdrawwal
+		 $result=$this->Pinjamanmodel->sum_withdrawal($nama);
+		 $data['sum_withdrawal']=$result['data'];
+		 $this->load->view('pinjaman/v_angsuran', $data);
+
+	}
+
+	public function search_detail(){
+		 $nama =  $this->session->userdata('member_id');
+		 //echo $nama;
+		 $result=$this->Pinjamanmodel->search($nama);
+		 $data['pinjaman']=$result['data'];
+		// $this->load->view('pinjaman/v_pinjaman', $data);
+		 // angsuran
+		 $result=$this->Pinjamanmodel->search_angsuran($nama);
+		 $data['angsuran']=$result['data'];
+		 // withdrawal
+		 $result=$this->Pinjamanmodel->withdrawal($nama);
+		 $data['withdrawal']=$result['data'];
+		 // sum total
+		 $result=$this->Pinjamanmodel->sum_angsuran($nama);
+		 $data['sum']=$result['data'];
+		 // sum witdrawwal
+		 $result=$this->Pinjamanmodel->sum_withdrawal($nama);
+		 $data['sum_withdrawal']=$result['data'];
+		 $this->load->view('pinjaman/v_angsuran', $data);
+
 	}
 
 	function Post() {
 		if($this->input->post('simpan')=="Save"){
 			$this->Pinjamanmodel->input();
-			redirect('pinjaman','refresh');
-		
+			redirect('pinjaman/search_detail','refresh');
 		}
 		else if ($this->input->post('simpan')=="Update"){
 			$no_pinjam=$this->input->post('no_pinjam');
 			$this->Pinjamanmodel->edit($no_pinjam);
 			redirect('pinjaman','refresh');
+		} elseif ($this->input->post('simpan')=="Angsur") {
+			$this->Pinjamanmodel->angsuran();
+			redirect('pinjaman/search_detail','refresh');
+		}elseif ($this->input->post('simpan')=="Input Pengeluaran") {
+			$this->Pinjamanmodel->inputwitdrawal();
+			redirect('pinjaman/search_detail','refresh');
 		}
 	}
 
@@ -76,8 +121,20 @@ class Pinjaman extends CI_controller {
 		$no_pinjam=$this->input->get('pinjaman');
 		$result=$this->Pinjamanmodel->getEdit($no_pinjam);
 		$data['pinjaman']=$result['data'];
-		$data['type']="Bayar";
+
+		$data['type']="Angsur";
 		$this->load->view('pinjaman/v_inputangsuran', $data);
+	}
+
+	function inputwitdrawal(){
+		$member_id=$this->input->get('pinjaman');
+		$this->session->set_userdata('member_id',$member_id);
+		//echo $member_id;
+		 $result=$this->Pinjamanmodel->getmember($member_id);
+		 $data['member']=$result['data'];
+		 $data['type']="Input Pengeluaran";
+		 $this->load->view('pinjaman/v_inputwithdrawal', $data);
+		
 	}
 
 	function edit(){
@@ -90,9 +147,23 @@ class Pinjaman extends CI_controller {
 	}
 
 	public function Delete() {
-		$no_pinjam=$this->input->get('pinjaman');
-		$this->Pinjamanmodel->delete($no_pinjam);
+		$member_id=$this->input->get('pinjaman');
+		$this->Pinjamanmodel->deletepinjam($member_id);
+		$this->Pinjamanmodel->deletangs($member_id);
+		$this->Pinjamanmodel->deletpenarikan($member_id);
 		redirect('pinjaman','refresh');
+	}
+
+	public function Deleteangsuran() {
+		$id_keluar=$this->input->get('pinjaman');
+		$this->Pinjamanmodel->Deleteangsuran($id_keluar);
+		redirect('pinjaman/search_detail','refresh');
+	}
+
+	public function Deletewithdrawal() {
+		$no_tran=$this->input->get('pinjaman');
+		$this->Pinjamanmodel->Deletewithdrawal($no_tran);
+		redirect('pinjaman/search_detail','refresh');
 	}
 
 }

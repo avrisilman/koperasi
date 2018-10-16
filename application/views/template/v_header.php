@@ -55,7 +55,14 @@
             </a>
           </li>
 
-         <li>
+            <li>
+            <a href="<?php echo base_url();?>kas">
+              <i class="tim-icons icon-pencil"></i>
+              <p>KAS</p>
+            </a>
+          </li>
+
+    <!--      <li>
             <a href="#kas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="tim-icons icon-money-coins"></i>
             <p>Kas</p></a>
             <ul class="collapse list-unstyled" id="kas">
@@ -75,7 +82,7 @@
                   <a href="#"><p>SHU By Member</p></a>
               </li>
             </ul>
-          </li>
+          </li> -->
 
           <li>
             <a href="#member" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="tim-icons icon-badge"></i>
@@ -88,7 +95,7 @@
                   <a href="<?php echo base_url();?>membersewa">Member Sewa</a>
               </li>
               <li>
-                  <a href="<?php echo base_url();?>simpananperdana">Simpanan Perdana</a>
+                  <a href="<?php echo base_url();?>simpanan">Simpanan Perdana</a>
               </li>
             
             </ul>

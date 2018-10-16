@@ -4,6 +4,7 @@ class member_model extends CI_Model{
 	function __construct() {
 		parent::__construct();
 		$this->load->database();
+		$this->load->helper(['url','form']);
 	}
 
 	function input() {
@@ -40,13 +41,34 @@ class member_model extends CI_Model{
     }
 
 	function search($nama){
-		$qry  = "SELECT * from member where nama='$nama'";
+		$qry  = "SELECT * from member where member_id like '%$nama%' or nama like '%$nama%'";
 
 		$query = $this->db->query($qry);
 		$result['data']=$query->result();
 		//echo nl2br($qry);die();
 		return $result;
 	}
+
+	function simpanan($nama){
+		$qry  = "SELECT A.*, B.* from member A inner join angsuran B on A.member_id=B.member_id 
+				 where A.member_id like '%$nama%' or A.nama like '%$nama%'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function cekmember($nama){
+		$qry  = "SELECT A.*, B.* from member A join pinjaman B on A.member_id=B.member_id where A.nama like '%$nama%' or A.member_id like '%$nama%'";
+		$query = $this->db->query($qry);
+		if ($query->num_rows() > 0){
+			redirect('pinjaman/input');
+		}else{
+			redirect('simpanan/input');
+		}
+	}
+
 
 	function getEdit($member_id){
 		$qry  = "SELECT * from member where member_id='$member_id'";

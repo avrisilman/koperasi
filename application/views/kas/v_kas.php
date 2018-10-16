@@ -10,6 +10,14 @@
                 <table>
                   <tr>
                     <td><a href="<?php echo base_url();?>kas/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                     <td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">CETAK</button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Laba Rugi</a>
+                          <a class="dropdown-item" href="#">Neraca</a>
+                          <a class="dropdown-item" href="#">SHU</a>
+                          <a class="dropdown-item" href="#">SHU By Member</a>
+                        </div>
+                    </td>
                     <!-- <td><input type="text" class="form-control" placeholder="Masukan Nama GL" name="nama" value="<?php echo $this->input->post('nama');?>" ></td>
                     <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Search" ></td> -->
                   </tr>

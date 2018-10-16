@@ -1,5 +1,5 @@
-<?php echo form_open("pinjaman/bayar", array('enctype'=>'multipart/form-data')); ?>
-<?php if ($type=="Bayar"){
+<?php echo form_open("pinjaman/post", array('enctype'=>'multipart/form-data')); ?>
+<?php if ($type=="Angsur"){
   echo form_hidden ('no_pinjam',$this->input->get('pinjaman'));
 }
 ?>
@@ -11,6 +11,7 @@
    foreach($pinjaman as $value){
     $no_pinjam      = $value->no_pinjam;
     $member_id      = $value->member_id;
+    $jenis_pinjaman = $value->jenis_pinjaman;
     $jmlpinjaman    = $value->jmlpinjaman;
     $bunga          = $value->bunga;
     $tenor          = $value->tenor;
@@ -25,63 +26,50 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label>No. Karyawan</label>
-              <input type="hidden" name="no_pinjam" value="<?php echo $no_pinjam;?>">
-              <input type="number" name="member_id" class="form-control" placeholder="Masukan No. Karyawan" value="<?php echo $member_id;?>">
-            </div>
-            <div class="form-group">
               <label>Simpanan Wajib</label>
-              <input type="number" name="simwajib" class="form-control" value="" placeholder="Simpanan Wajib">
+              <input type="hidden" name="no_pinjam" value="<?php echo $no_pinjam;?>">
+              <input type="hidden" name="member_id" class="form-control" value="<?php echo $member_id;?>">
+              <input type="number" name="simwajib" class="form-control" placeholder="Masukan Simpanan Wajib" >
             </div>
             <div class="form-group">
               <label>Simpanan Sukarela</label>
-              <input type="number" name="simrela" class="form-control" value="" placeholder="Simpanan Sukarela">
+              <input type="number" name="simrela" class="form-control" placeholder="Masukan Simpanan Sukarela">
             </div>
-
             <div class="form-group">
               <label>Dana Sosial</label>
-              <input type="number" name="danasosial" class="form-control" value="" placeholder="Dana Sosial">
+              <input type="number" name="danasosial" class="form-control" placeholder="Masukan Dana Sosial">
             </div>
             <div class="form-group">
               <label>Angsuran Pinjaman</label>
-              <input type="number" disabled="disable" name="angpinjam" class="form-control" value="" placeholder="Angsuran Pinjaman">
+              <input type="number" name="angpinjam" class="form-control" value="<?php echo ($jmlpinjaman/$tenor);?>" disabled="disable" placeholder="Masukan Angsuran Pinjaman">
+              <input type="hidden" name="angpinjam" class="form-control" value="<?php echo ($jmlpinjaman/$tenor);?>" placeholder="Masukan Angsuran Pinjaman">
             </div>
-
             <div class="form-group">
-              <label>Jasa Pinjaman</label>
-              <input type="number" disabled="disable" name="jasapinjam" class="form-control" 
-              value="" placeholder="Jasa Pinjaman">
+              <label>Jasa Pnjaman</label>
+              <input type="number" name="jasapinjam" class="form-control" value="<?php echo (($jmlpinjaman/100)*$bunga);?>" placeholder="Masukan Jasa Pinjaman">
             </div>
-
-            <input type="hidden"  name="angpinjam" class="form-control" value="" placeholder="Angsuran Pinjaman">
-
-            <input type="hidden" name="jasapinjam" class="form-control" 
-            value="" placeholder="Jasa Pinjaman"> 
-
             <div class="form-group">
               <label>Denda</label>
-              <input type="number" name="denda" class="form-control" value="" placeholder="Denda">
-            </div>
-
-            <div class="form-group">
-              <label>Lain-Lain</label>
-              <input type="number" name="lain" class="form-control" value="" placeholder="Lain-Lain">
+              <input type="number" name="denda" class="form-control" placeholder="Masukan Denda">
             </div>
             <div class="form-group">
-              <label>Tagihan Bulan</label>
-              <input type="text" name="ket" class="form-control" value="" placeholder="Keterangan">
+              <label>Lain-lain</label>
+              <input type="number" name="lain" class="form-control" placeholder="Masukan Lain-lain">
             </div>
-
             <div class="form-group">
-              <label>Hari Terlambat</label>
-              <input type="text" name="hari_terlambat" class="form-control" placeholder="Hari Terlambat">
+              <label>Tagihan Bulanan</label>
+              <input type="number" name="ket" class="form-control" placeholder="Masukan Tagihan Bulan">
             </div>
-
+            <div class="form-group">
+              <label>Harga Terlambat</label>
+              <input type="text" name="hari_terlambat" class="form-control" placeholder="Masukan Hari Terlambat">
+            </div>
             <div class="form-group">
               <label>Status</label>
               <select name="status" class="form-control">
-               <option style="color: black;" value="Tidak">Tidak</option>
-               <option style="color: black;" value="Lunas">Lunas</option>
+              
+               <option value="Lunas">Lunas</option>
+               <option value="Tidak">Tidak</option>
              </select>
            </div>
 

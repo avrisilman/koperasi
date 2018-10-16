@@ -1,5 +1,5 @@
 <?php
-class Perdanamodel extends CI_Model{
+class Simpananmodel extends CI_Model{
 	
 	function __construct() {
 		parent::__construct();
@@ -17,6 +17,14 @@ class Perdanamodel extends CI_Model{
 		);
 
 		$this->db->insert('angsuran',$data);
+	}
+
+	function editmember($member_id) {
+		$data=array(
+			'statuspinjaman' 		=> "1"
+		);
+		$this->db->where('member_id',$member_id);
+		$this->db->update('member',$data);
 	}
 
 	public function record_count() {

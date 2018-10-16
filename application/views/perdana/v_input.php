@@ -1,4 +1,4 @@
-  <?php echo form_open("simpananperdana/post", array('enctype'=>'multipart/form-data')); ?>
+  <?php echo form_open("simpanan/post", array('enctype'=>'multipart/form-data')); ?>
   <?php $this->load->view('template/v_header');?>
   <div class="content">
         <div class="row">
@@ -13,7 +13,8 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>No. Karyawan</label>
-                        <input type="number" name="member_id" class="form-control" placeholder="Masukan No. Karyawan">
+                        <input type="number" name="member_id" disabled="disable" class="form-control" placeholder="Masukan No. Karyawan" value="<?php echo $this->session->userdata('member_id');?>">
+                         <input type="hidden" name="member_id" value="<?php echo $this->session->userdata('member_id');?>">
                       </div>
                       <div class="form-group">
                         <label>Simpanan Pokok</label>

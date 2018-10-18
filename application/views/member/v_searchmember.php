@@ -54,9 +54,9 @@
                     <td><?php echo $value->aktif;?></td>
                     <td class="td-actions text-right">
                       <?php if ($value->statuspinjaman == 1) {
-                        echo "<a href='Inputpinjaman/".$value->member_id."'><i class='tim-icons icon-simple-add'></i>&nbsp;Pinjaman</a> | <a href='Inputsimpanan/".$value->member_id."'><i class='tim-icons icon-simple-add'></i>&nbsp;Simpanan</a>";
+                        echo "<a href='Inputpinjaman/".$value->member_id."' style='font-size:11px;'><i class='tim-icons icon-simple-add'></i>&nbsp;Pinjaman</a> | <a href='Inputsimpanan/".$value->member_id."' style='font-size:11px;'><i class='tim-icons icon-simple-add'></i>&nbsp;Simpanan</a>";
                       }else{
-                        echo "<a href='Inputsimpanan/".$value->member_id."'><i class='tim-icons icon-simple-add'></i>&nbsp;Simpanan</a></a>";
+                        echo "<a href='Inputsimpanan/".$value->member_id."' style='font-size:11px;'><i class='tim-icons icon-simple-add'></i>&nbsp;Simpanan</a></a>";
                       } ;?>
 
                      &nbsp;|&nbsp; 

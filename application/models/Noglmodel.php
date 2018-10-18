@@ -1,5 +1,5 @@
 <?php
-class nogl_model extends CI_Model{
+class Noglmodel extends CI_Model{
 	
 	function __construct() {
 		parent::__construct();

@@ -6,7 +6,7 @@ class Nogl extends CI_controller {
 			redirect('signin');
 		}else{
 			$this->load->helper(['url','form']);
-			$this->load->model('nogl_model');
+			$this->load->model('Noglmodel');
 			$this->load->database();
 			$this->load->library('pagination');
 		}
@@ -16,7 +16,7 @@ class Nogl extends CI_controller {
 	public function index($Starting=0){
 		$data['type']="index";
 		$config['base_url'] = base_url().'nogl/index';
-        $TotalRows = $this->nogl_model->record_count();
+        $TotalRows = $this->Noglmodel->record_count();
         $config['total_rows'] = $TotalRows;
         $config['per_page'] = 5; 
         $config['num_links'] = 5;
@@ -42,7 +42,7 @@ class Nogl extends CI_controller {
 		$config['num_tag_close'] = '</li>';
         $this->pagination->initialize($config); 
         $data['Links'] = $this->pagination->create_links();
-        $data['nogl'] = $this->nogl_model->fetch_data($Starting,$TotalRecord);
+        $data['nogl'] = $this->Noglmodel->fetch_data($Starting,$TotalRecord);
         $this->load->view('nogl/v_nogl',$data);
 	}
 
@@ -54,27 +54,27 @@ class Nogl extends CI_controller {
 	public function search(){
 		 $data['type']="Search";
 		 $nama =  $this->input->post('nama');
-		 $result=$this->nogl_model->search($nama);
+		 $result=$this->Noglmodel->search($nama);
 		 $data['nogl']=$result['data'];
 		 $this->load->view('nogl/v_nogl', $data);
 	}
 
 	function Post() {
 		if($this->input->post('simpan')=="Save"){
-			$this->nogl_model->input();
+			$this->Noglmodel->input();
 			redirect('nogl','refresh');
 		
 		}
 		else if ($this->input->post('simpan')=="Update"){
 			$id=$this->input->post('id');
-			$this->nogl_model->edit($id);
+			$this->Noglmodel->edit($id);
 			redirect('nogl','refresh');
 		}
 	}
 
 	function edit(){
 		$id=$this->input->get('nogl');
-		$result=$this->nogl_model->getEdit($id);
+		$result=$this->Noglmodel->getEdit($id);
 		$data['nogl']=$result['data'];
 
 		$data['type']="Update";
@@ -83,7 +83,7 @@ class Nogl extends CI_controller {
 
 	public function Delete() {
 		$id=$this->input->get('nogl');
-		$this->nogl_model->delete($id);
+		$this->Noglmodel->delete($id);
 		redirect('nogl','refresh');
 	}
 

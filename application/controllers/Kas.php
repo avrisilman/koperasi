@@ -6,7 +6,7 @@ class Kas extends CI_controller {
 			redirect('signin');
 		}else{
 			$this->load->helper(['url','form']);
-			$this->load->model('addkas_model');
+			$this->load->model('Kasmodel');
 			$this->load->database();
 			$this->load->library('pagination');
 		}
@@ -16,7 +16,7 @@ class Kas extends CI_controller {
 	public function index($Starting=0){
 		$data['type']="index";
 		$config['base_url'] = base_url().'kas/index';
-        $TotalRows = $this->addkas_model->record_count();
+        $TotalRows = $this->Kasmodel->record_count();
         $config['total_rows'] = $TotalRows;
         $config['per_page'] = 5; 
         $config['num_links'] = 5;
@@ -42,43 +42,54 @@ class Kas extends CI_controller {
 		$config['num_tag_close'] = '</li>';
         $this->pagination->initialize($config); 
         $data['Links'] = $this->pagination->create_links();
-        $data['kas'] = $this->addkas_model->fetch_data($Starting,$TotalRecord);
+        $data['kas'] = $this->Kasmodel->fetch_data($Starting,$TotalRecord);
         $this->load->view('kas/v_kas',$data);
 	}
 
 	public function Input() {
 		$data['type']="Save";
-		$data['nogl'] = $this->addkas_model->change_category();
+		$data['nogl'] = $this->Kasmodel->change_category();
 		$this->load->view('kas/v_input', $data);
 	}
 
 	public function search(){
-		 $data['type']="Search";
-		 $nama =  $this->input->post('nama');
-		 $result=$this->addkas_model->search($nama);
-		 $data['kas']=$result['data'];
-		 $this->load->view('kas/v_nogl', $data);
+		$from = $this->input->post('from');
+		$to   = $this->input->post('to'); 
+		$fromshu = $this->input->post('fromshu');
+		$toshu   = $this->input->post('toshu'); 
+
+		if($this->input->post('search')=="Laba Rugi"){
+			$result=$this->Kasmodel->labarugi($from, $to);
+		 	$data['labarugi']=$result['data'];
+		 	$this->load->view('kas/v_labarugi', $data);
+		}else if($this->input->post('search')=="Neraca"){
+			$result=$this->Kasmodel->neraca($from, $to, $fromshu, $toshu);
+		 	$data['neraca']=$result['data'];
+		 	$this->load->view('kas/v_neraca', $data);
+		}else if($this->input->post('search')=="SHU") {
+			
+		}
 	}
 
 	function Post() {
 		if($this->input->post('simpan')=="Save"){
-			$this->addkas_model->input();
+			$this->Kasmodel->input();
 			redirect('kas','refresh');
 		
 		}
 		else if ($this->input->post('simpan')=="Update"){
 			$id=$this->input->post('id');
-			$this->addkas_model->edit($id);
+			$this->Kasmodel->edit($id);
 			redirect('kas','refresh');
 		}
 	}
 
 	function edit(){
 		$id=$this->input->get('kas');
-		$result=$this->addkas_model->getEdit($id);
+		$result=$this->Kasmodel->getEdit($id);
 		$data['kas']=$result['data'];
 
-		$result=$this->addkas_model->change_categoryedit();
+		$result=$this->Kasmodel->change_categoryedit();
 		$data['nogl']=$result['data'];
 
 		$data['type']="Update";
@@ -87,7 +98,7 @@ class Kas extends CI_controller {
 
 	public function Delete() {
 		$id=$this->input->get('kas');
-		$this->addkas_model->delete($id);
+		$this->Kasmodel->delete($id);
 		redirect('kas','refresh');
 	}
 

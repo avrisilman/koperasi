@@ -8,18 +8,38 @@
                 
              <?php echo form_open("kas/search");?>    
                 <table>
+                 
                   <tr>
-                    <td><a href="<?php echo base_url();?>kas/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                     <td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">CETAK</button>
+                    <td style="color: #d45151;">From</td>
+                    <td><input type="date" class="form-control" name="from" value="<?php echo $this->input->post('from');?>" ></td>
+
+                    <td style="color: #d45151;">&nbsp;&nbsp;To</td>
+                    <td><input type="date" class="form-control" name="to" value="<?php echo $this->input->post('to');?>" ></td>
+                  </tr>
+                  <tr>
+                    <td style="color: #d45151;">From SHU&nbsp;&nbsp;</td>
+                    <td><input type="date" class="form-control" name="fromshu" value="<?php echo $this->input->post('fromshu');?>" ></td>
+
+                    <td style="color: #d45151;">&nbsp;&nbsp;To SHU &nbsp;&nbsp;</td>
+                    <td><input type="date" class="form-control" name="toshu" value="<?php echo $this->input->post('toshu');?>" ></td>
+                  </tr>
+                   <tr>
+                     <td><a href="<?php echo base_url();?>kas/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a></td> 
+                      <td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">CETAK</button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">Laba Rugi</a>
-                          <a class="dropdown-item" href="#">Neraca</a>
-                          <a class="dropdown-item" href="#">SHU</a>
-                          <a class="dropdown-item" href="#">SHU By Member</a>
+                          <a class="dropdown-item"><input id="btn_submit" name="search" type="submit" value="Laba Rugi"></a>
+                          <a class="dropdown-item"><input id="btn_submit" name="search" type="submit" value="Neraca"></a>
+                          <a class="dropdown-item"><input id="btn_submit" name="search" type="submit" value="SHU"></a>
+                          <a class="dropdown-item"><input id="btn_submit" name="search" type="submit" value="SHU By Member"></a>
                         </div>
-                    </td>
-                    <!-- <td><input type="text" class="form-control" placeholder="Masukan Nama GL" name="nama" value="<?php echo $this->input->post('nama');?>" ></td>
-                    <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Search" ></td> -->
+                    </td> 
+                   
+
+                    
+
+                    <!-- <td><input id="btn_submit" name="search" type="submit" class="btn btn-primary btn-block" value="Laba Rugi" ></td>
+                    <td><input id="btn_submit" name="search" type="submit" class="btn btn-primary btn-block" value="Neraca" ></td> 
+                    <td><input id="btn_submit" name="search" type="submit" class="btn btn-primary btn-block" value="SHU" ></td>  -->
                   </tr>
                 </table>
             <?php echo form_close(); ?>  

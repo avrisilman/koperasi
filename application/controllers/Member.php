@@ -6,7 +6,7 @@ class Member extends CI_controller {
 			redirect('signin');
 		}else{
 			$this->load->helper(['url','form']);
-			$this->load->model('member_model');
+			$this->load->model('Membermodel');
 			$this->load->database();
 			$this->load->library('pagination');
 		}
@@ -16,7 +16,7 @@ class Member extends CI_controller {
 	public function index($Starting=0){
 		$data['type']="index";
 		$config['base_url'] = base_url().'member/index';
-        $TotalRows = $this->member_model->record_count();
+        $TotalRows = $this->Membermodel->record_count();
         $config['total_rows'] = $TotalRows;
         $config['per_page'] = 5; 
         $config['num_links'] = 5;
@@ -42,7 +42,7 @@ class Member extends CI_controller {
 		$config['num_tag_close'] = '</li>';
         $this->pagination->initialize($config); 
         $data['Links'] = $this->pagination->create_links();
-        $data['member'] = $this->member_model->fetch_data($Starting,$TotalRecord);
+        $data['member'] = $this->Membermodel->fetch_data($Starting,$TotalRecord);
         $this->load->view('member/v_member',$data);
 	}
 
@@ -54,10 +54,10 @@ class Member extends CI_controller {
 	public function search(){
 		 $data['type']="Search";
 		 $nama =  $this->input->post('nama');
-		 $result=$this->member_model->search($nama);
+		 $result=$this->Membermodel->search($nama);
 		 $data['member']=$result['data'];
 
-		 $result=$this->member_model->simpanan($nama);
+		 $result=$this->Membermodel->simpanan($nama);
 		 $data['angsuran']=$result['data'];
 
 		 $this->load->view('member/v_searchmember', $data);
@@ -80,10 +80,10 @@ class Member extends CI_controller {
 
 	public function search_detail(){
 
-		 $result=$this->member_model->search($this->session->userdata('member_id'));
+		 $result=$this->Membermodel->search($this->session->userdata('member_id'));
 		 $data['member']=$result['data'];
 
-		 $result=$this->member_model->simpanan($this->session->userdata('member_id'));
+		 $result=$this->Membermodel->simpanan($this->session->userdata('member_id'));
 		 $data['angsuran']=$result['data'];
 
 		 $this->load->view('member/v_searchmember', $data);
@@ -92,25 +92,25 @@ class Member extends CI_controller {
 	function cekpinjaman(){
 		$member_id=$this->input->get('member');
 		$this->session->set_userdata('member_id',$member_id);
-		$result=$this->member_model->cekmember($this->session->userdata('member_id'));
+		$result=$this->Membermodel->cekmember($this->session->userdata('member_id'));
 	}
 
 	function Post() {
 		if($this->input->post('simpan')=="Save"){
-			$this->member_model->input();
+			$this->Membermodel->input();
 			redirect('member','refresh');
 		
 		}
 		else if ($this->input->post('simpan')=="Update"){
 			$member_id=$this->input->post('member_id');
-			$this->member_model->edit($member_id);
+			$this->Membermodel->edit($member_id);
 			redirect('member','refresh');
 		}
 	}
 
 	function edit(){
 		$member_id=$this->input->get('member');
-		$result=$this->member_model->getEdit($member_id);
+		$result=$this->Membermodel->getEdit($member_id);
 		$data['member']=$result['data'];
 
 		$data['type']="Update";
@@ -119,7 +119,7 @@ class Member extends CI_controller {
 
 	public function Delete() {
 		$member_id=$this->input->get('member');
-		$this->member_model->delete($member_id);
+		$this->Membermodel->delete($member_id);
 		redirect('member','refresh');
 	}
 

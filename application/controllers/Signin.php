@@ -2,7 +2,7 @@
 class Signin extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		$this->load->model('signin_model');
+		$this->load->model('Signinmodel');
 		$this->load->helper(['url','form']);
 	}
 	
@@ -14,7 +14,7 @@ class Signin extends CI_Controller{
 	function post_signin(){
 		$username =  $this->input->post('username');
 		$password = $this->input->post('password');
-		$result = $this->signin_model->post_signin($username, $password);
+		$result = $this->Signinmodel->post_signin($username, $password);
 	}
 
 	function invalid_signin(){

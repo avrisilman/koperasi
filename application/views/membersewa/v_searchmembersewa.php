@@ -97,90 +97,104 @@
                   </thead>
 
                   <tbody>
-                    <?php
-                    $no = 1;
-                    foreach($invoice as $value){
-                      ?> 
+
+                    <?php if(empty($invoice)){ ?>
                       <tr>
-                        <td><?php echo $value->no_invoice;?></td>
-                        <td><?php echo $value->no_sewa;?></td>
-                        <td><?php echo $value->nogl;?></td>
-                        <td><?php echo number_format($value->nilai,2,',','.');?></td>
-                        <td><?php echo $value->tglinvoice;?></td>
-                        <td class="td-actions text-right">
-                          <a href="<?php echo site_url('membersewa/inputPendapatan/')."?invoice=".$value->no_invoice;?>" style="font-size: 12px;"><i class="tim-icons icon-simple-add"></i>&nbsp;Pendapatan</a>
-                          &nbsp;|&nbsp;
-                          <a href="<?php echo site_url('membersewa/edit/')."?member_sewa=".$value->no_sewa; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
-                          &nbsp;&nbsp;|&nbsp;&nbsp;
-                          <a href="<?php echo site_url('membersewa/Deleteinvoice/')."?invoice=".$value->no_invoice; ?>"><i class="tim-icons icon-trash-simple"></i></a></td>
-                        </tr>
-                        <?php $no++;}?>
-                      </tbody>
+                        <td colspan="6">Data Kosong</td>
+                      </tr>
+                    <?php }else{
+                      $no=0;
+                      foreach($invoice as $value){ $no++;?>
+                        <tr>
+                          <td><?php echo $value->no_invoice;?></td>
+                          <td><?php echo $value->no_sewa;?></td>
+                          <td><?php echo $value->nogl;?></td>
+                          <td><?php echo number_format($value->nilai,2,',','.');?></td>
+                          <td><?php echo $value->tglinvoice;?></td>
+                          <td class="td-actions text-right">
+                            <a href="<?php echo site_url('membersewa/inputPendapatan/')."?invoice=".$value->no_invoice;?>" style="font-size: 12px;"><i class="tim-icons icon-simple-add"></i>&nbsp;Pendapatan</a>
+                            &nbsp;|&nbsp;
+                            <a href="<?php echo site_url('membersewa/edit/')."?member_sewa=".$value->no_sewa; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="<?php echo site_url('membersewa/Deleteinvoice/')."?invoice=".$value->no_invoice; ?>"><i class="tim-icons icon-trash-simple"></i></a></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                      ?>
 
-                    </table>
+                    </tbody>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header">
+                <h4 class="card-title">LIST PENDAPATAN</h4>
+
+              </div>
+              <div class="card-body" style="background-color: #b2b2b2;">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>No. Invoice</th>
+                        <th>No. Kantin</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah Bayar</th>
+                        <th>Pendapatan Listrik</th>
+                        <th>Pendapatan Admin</th>
+                        <th>Iuran Sampah</th>
+                        <th>Denda</th>
+                        <th class="td-actions text-right">Action</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
 
 
+                     <?php if(empty($pendapatan)){ ?>
+                      <tr>
+                        <td colspan="6">Data Kosong</td>
+                      </tr>
+                    <?php }else{
+                      $no=0;
+                      foreach($pendapatan as $value){ $no++;?>
+                        <tr>
+                          <td><?php echo $value->no_invoice;?></td>
+                          <td><?php echo $value->no_sewa;?></td>
+                          <td><?php echo $value->tanggal;?></td>
+                          <td><?php echo number_format($value->jml_bayar,2,',','.');?></td>
+                          <td><?php echo number_format($value->air,2,',','.');?></td>
+                          <td><?php echo number_format($value->adm,2,',','.');?></td>
+                          <td><?php echo number_format($value->sampah,2,',','.');?></td>
+                          <td><?php echo number_format($value->denda,2,',','.');?></td>
+                          <td class="td-actions text-right">
+                            <a href="<?php echo site_url('membersewa/edit/')."?member_sewa=".$value->no_sewa; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="<?php echo site_url('membersewa/DeletePendapatan/')."?pendapatan=".$value->no_tran; ?>"><i class="tim-icons icon-trash-simple"></i></a></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                      ?>
 
-                  </div>
+                    </tbody>
+                  </table>
+
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card ">
-                <div class="card-header">
-                  <h4 class="card-title">LIST PENDAPATAN</h4>
+        </div>
 
-                </div>
-                <div class="card-body" style="background-color: #b2b2b2;">
-                  <div class="table-responsive">
-                    <table class="table tablesorter " id="">
-                      <thead class=" text-primary">
-                        <tr>
-                          <th>No. Invoice</th>
-                          <th>No. Kantin</th>
-                          <th>Tanggal</th>
-                          <th>Jumlah Bayar</th>
-                          <th>Pendapatan Listrik</th>
-                          <th>Pendapatan Admin</th>
-                          <th>Iuran Sampah</th>
-                          <th>Denda</th>
-                          <th class="td-actions text-right">Action</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        <?php
-                        $no = 1;
-                        foreach($pendapatan as $value){
-                          ?> 
-                          <tr>
-                            <td><?php echo $value->no_invoice;?></td>
-                            <td><?php echo $value->no_sewa;?></td>
-                            <td><?php echo $value->tanggal;?></td>
-                            <td><?php echo number_format($value->jml_bayar,2,',','.');?></td>
-                            <td><?php echo number_format($value->air,2,',','.');?></td>
-                            <td><?php echo number_format($value->adm,2,',','.');?></td>
-                            <td><?php echo number_format($value->sampah,2,',','.');?></td>
-                            <td><?php echo number_format($value->denda,2,',','.');?></td>
-                            <td class="td-actions text-right">
-                              <a href="<?php echo site_url('membersewa/edit/')."?member_sewa=".$value->no_sewa; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
-                              &nbsp;&nbsp;|&nbsp;&nbsp;
-                              <a href="<?php echo site_url('membersewa/DeletePendapatan/')."?pendapatan=".$value->no_tran; ?>"><i class="tim-icons icon-trash-simple"></i></a></td>
-                            </tr>
-                            <?php $no++;}?>
-                          </tbody>
-                        </table>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-            <?php $this->load->view('template/v_footer');?>
+      </div>
+      <?php $this->load->view('template/v_footer');?>
 

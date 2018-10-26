@@ -11,10 +11,13 @@
                   <tr>
                      <td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Shoty By</button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">Bulan</a>
-                          <a class="dropdown-item" href="#">Jenis Kelamin</a>
-                          <a class="dropdown-item" href="#">Departement</a>
-                          <a class="dropdown-item" href="#">Status Anggota</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortbybulan">Member Bulan</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortjk">Jenis Kelamin</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortdept">Departement</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortanggota">Status Anggota</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortpinjamanbulan">Pinjaman Bulan</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortpinjamanmember">Pinjaman Member</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortpeminjambaru">Peminjam Baru</a>
                         </div>
                     </td>
                     <td><a href="<?php echo base_url();?>member/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

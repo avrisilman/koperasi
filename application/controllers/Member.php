@@ -123,5 +123,34 @@ class Member extends CI_controller {
 		redirect('member','refresh');
 	}
 
+	function shortbybulan(){
+		$this->load->view('member/v_shortbybulan');
+	}
+
+	function shortjk(){
+		$this->load->view('member/v_shortjk');
+	}
+
+	function shortdept(){
+		$this->load->view('member/v_shortdept');
+	}
+
+	function shortanggota(){
+		$this->load->view('member/v_shortanggota');
+	}
+
+	function shortpinjamanbulan(){
+		$this->load->view('member/v_shortpinjamanbulan');
+	}
+
+	function shortpinjamanmember(){
+		$this->load->view('member/v_shortpinjamanmember');
+	}
+
+	function shortpeminjambaru(){
+		$this->load->view('member/v_shortpeminjambaru');
+	}
+
+
 }
 ?>

@@ -143,7 +143,7 @@
           </li>
 
            <li>
-            <a href="./dashboard.html">
+            <a href="<?php echo base_url(); ?>outstanding">
               <i class="tim-icons icon-bullet-list-67"></i>
               <p>Outstanding</p>
             </a>

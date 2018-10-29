@@ -114,7 +114,7 @@
                           <td class="td-actions text-right">
                             <a href="<?php echo site_url('membersewa/inputPendapatan/')."?invoice=".$value->no_invoice;?>" style="font-size: 12px;"><i class="tim-icons icon-simple-add"></i>&nbsp;Pendapatan</a>
                             &nbsp;|&nbsp;
-                            <a href="<?php echo site_url('membersewa/edit/')."?member_sewa=".$value->no_sewa; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
+                            <a href="<?php echo site_url('membersewa/CetakInvoice/')."?member_sewa=".$value->no_invoice; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
                             <a href="<?php echo site_url('membersewa/Deleteinvoice/')."?invoice=".$value->no_invoice; ?>"><i class="tim-icons icon-trash-simple"></i></a></td>
                           </tr>
@@ -176,7 +176,7 @@
                           <td><?php echo number_format($value->sampah,2,',','.');?></td>
                           <td><?php echo number_format($value->denda,2,',','.');?></td>
                           <td class="td-actions text-right">
-                            <a href="<?php echo site_url('membersewa/edit/')."?member_sewa=".$value->no_sewa; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
+                            <a href="<?php echo site_url('membersewa/CetakPendapatan/')."?member_sewa=".$value->no_tran; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
                             <a href="<?php echo site_url('membersewa/DeletePendapatan/')."?pendapatan=".$value->no_tran; ?>"><i class="tim-icons icon-trash-simple"></i></a></td>
                           </tr>

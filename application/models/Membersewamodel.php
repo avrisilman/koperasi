@@ -139,5 +139,24 @@ class Membersewamodel extends CI_Model{
 		$this->db->delete('pendapatan');
 	}
 
+	function CetakInvoice($no_invoice){
+		$qry  = "SELECT A.*, B.* FROM member_sewa A INNER JOIN invoice B ON A.no_sewa=B.no_sewa WHERE B.no_invoice='$no_invoice'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakPendapatan($no_tran){
+		$qry  = "SELECT A.*, B.*, C.* from member_sewa A INNER JOIN invoice B ON A.no_sewa=B.no_sewa
+				INNER JOIN pendapatan C ON C.no_invoice=B.no_invoice WHERE C.no_tran='$no_tran'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
 }
 ?>

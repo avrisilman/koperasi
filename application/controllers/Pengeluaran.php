@@ -90,5 +90,12 @@ class Pengeluaran extends CI_controller {
 		redirect('pengeluaran','refresh');
 	}
 
+	function CetakPengeluaran(){
+		$no_tran=$this->input->get('pengeluaran');
+		$result=$this->Pengeluaranmodel->CetakPengeluaran($no_tran);
+		$data['pengeluaran']=$result['data'];
+		$this->load->view('pengeluaran/v_cetakpengeluaran', $data);
+	}
+
 }
 ?>

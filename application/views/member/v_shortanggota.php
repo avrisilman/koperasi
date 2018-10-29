@@ -13,7 +13,7 @@
                   <table>
                     <tr>
                       <td>
-                        <select class="form-control">
+                        <select class="form-control" name="status">
                           <option style="background-color: #000000;" value="Aktif">Aktif</option>
                           <option style="background-color: #000000;" value="Tidak">Tidak</option>
                         </select>

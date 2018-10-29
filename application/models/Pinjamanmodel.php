@@ -57,6 +57,13 @@ class Pinjamanmodel extends CI_Model{
 		return $result;
 	}
 
+	function perdana($nama){
+		$qry  = "SELECT A.*, B.* from member A INNER JOIN angsuran B on A.member_id=B.member_id WHERE B.no_pinjam='0' and A.nama like '%$nama%'  or A.member_id like '%$nama%'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		return $result;
+	}
+
 	function withdrawal($nama){
 		$qry  = "SELECT A.member_id, A.nama, B.id_keluar, B.tanggal, B.simpokok , B.simwajib, B.simrela from member A join pengeluaran B on A.member_id=B.member_id where A.nama like '%$nama%' or B.member_id like '%$nama%' ";
 		$query = $this->db->query($qry); 
@@ -65,12 +72,22 @@ class Pinjamanmodel extends CI_Model{
 		return $result;
 	}
 
-	function sum_angsuran($nama){
+	/*function sum_angsuran($nama){
 		$qry  = "SELECT sum(C.angpinjam) as angpinjam, sum(C.jasapinjam) as jasapinjam, sum(C.simpokok) as simpokok,
 				 sum(C.simwajib) as simwajib, sum(C.simrela) as simrela
 				FROM member A 
 				INNER JOIN pinjaman B on A.member_id=B.member_id
 				INNER JOIN angsuran C on B.no_pinjam=C.no_pinjam WHERE A.nama like '%$nama%'  or A.member_id like '%$nama%' ";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		return $result;
+	}*/
+
+	function sum_angsuran($nama){
+		$qry  = "SELECT sum(C.angpinjam) as angpinjam, sum(C.jasapinjam) as jasapinjam, sum(C.simpokok) as simpokok,
+				 sum(C.simwajib) as simwajib, sum(C.simrela) as simrela
+				FROM member A 
+				INNER JOIN angsuran C on A.member_id=C.member_id WHERE A.nama like '%$nama%'  or A.member_id like '%$nama%' ";
 		$query = $this->db->query($qry);
 		$result['data']=$query->result();
 		return $result;
@@ -168,6 +185,47 @@ class Pinjamanmodel extends CI_Model{
 		$this->db->where('id_keluar',$id_keluar);
 		$this->db->delete('pengeluaran');
 	}
+
+	function CetakPinjaman($member_id){
+		$qry  = "SELECT A.*, B.* from member A INNER JOIN pinjaman B
+					ON A.member_id=B.member_id  
+					where A.member_id='$member_id' and A.aktif='aktif'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+
+	function CetakSimpanan($no_tran){
+		$qry  = "SELECT A.member_id, A.nama, A.dept,
+					   C.no_tran, C.no_pinjam, C.simpokok, C.simwajib,
+					   C.simrela, C.danasosial, C.angpinjam, C.tanggalangs,
+					   C.jasapinjam, C.denda, C.lain, C.angske,
+					   C.simpokok + C.simwajib + C.simrela + C.danasosial + 
+					   C.angpinjam + C.jasapinjam + C.denda + C.lain as total, C.ket
+		  FROM member A 
+		  INNER JOIN angsuran C ON A.member_id=C.member_id WHERE C.no_tran='$no_tran'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakPenarikan($id_keluar){
+		$qry  = "SELECT B.nama, A.id_keluar, A.member_id, A.tanggal,A.simpokok, A.simwajib, A.simrela, A.danasosial, A.jasapinjam, A.lain,
+			A.simpokok + A.simwajib + A.simrela + A.danasosial + A.jasapinjam + A.lain as total
+		  FROM pengeluaran A INNER JOIN member B ON A.member_id=B.member_id WHERE id_keluar='$id_keluar'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+
 
 }
 ?>

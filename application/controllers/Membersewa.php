@@ -144,5 +144,19 @@ class Membersewa extends CI_controller {
 		redirect('membersewa/search','refresh');
 	}
 
+	function CetakInvoice(){
+		$no_invoice=$this->input->get('member_sewa');
+		$result=$this->Membersewamodel->CetakInvoice($no_invoice);
+		$data['invoice']=$result['data'];
+		$this->load->view('membersewa/v_cetakinvoice', $data);
+	}
+
+	function CetakPendapatan(){
+		$no_tran=$this->input->get('member_sewa');
+		$result=$this->Membersewamodel->CetakPendapatan($no_tran);
+		$data['pendapatan']=$result['data'];
+		$this->load->view('membersewa/v_cetakpendapatan', $data);
+	}
+
 }
 ?>

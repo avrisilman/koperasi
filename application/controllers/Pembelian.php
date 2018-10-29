@@ -84,5 +84,17 @@ class Pembelian extends CI_controller {
 		redirect('pembelian','refresh');
 	}
 
+	function CetakPembelian(){
+		$data['type']="Download";
+		$from = $this->input->post('from');
+		$to   = $this->input->post('to');
+		$result=$this->Pembelianmodel->CetakPembelianKantor($from, $to);
+		$data['pembeliankantor']=$result['data'];
+
+		$result=$this->Pembelianmodel->CetakPembelianKantin($from, $to);
+		$data['pembeliankantin']=$result['data'];
+		$this->load->view('pembelian/v_cetakpembelian', $data);
+	}
+
 }
 ?>

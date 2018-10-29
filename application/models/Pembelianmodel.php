@@ -74,5 +74,23 @@ class Pembelianmodel extends CI_Model{
 		$this->db->delete('beli_aset');
 	}
 
+	function CetakPembelianKantor($id){
+		$qry  = "SELECT * from beli_aset where jenis='Inventaris Kantor'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakPembelianKantin($id){
+		$qry  = "SELECT * from beli_aset where jenis='Inventaris Kantin'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
 }
 ?>

@@ -108,27 +108,24 @@
               <li>
                   <a href="<?php echo base_url();?>pinjaman">Input Pinjaman</a>
               </li>
-              <li>
+             <!--  <li>
                   <a href="<?php echo base_url();?>simpananperdana">Input Simpanan</a>
               </li>
                <li>
                   <a href="<?php echo base_url();?>angsuran">Bayar Angsuran</a>
-              </li>
+              </li> -->
                <li>
                   <a href="<?php echo base_url();?>pinjaman">Input Invoice</a>
               </li>
-               <li>
+              <!--  <li>
                   <a href="<?php echo base_url();?>pinjaman">Input Pendapatan</a>
-              </li>
+              </li> -->
                <li>
                   <a href="<?php echo base_url();?>Pengeluaran">Input Pengeluaran</a>
               </li>
-               <li>
-                  <a href="<?php echo base_url();?>pinjaman">Input Pinjaman</a>
-              </li>
-               <li>
+             <!--   <li>
                   <a href="<?php echo base_url();?>pinjaman">Pengeluaran Simpanan</a>
-              </li>
+              </li> -->
                <li>
                   <a href="<?php echo base_url();?>pembelian">Pembelian Aset</a>
               </li>

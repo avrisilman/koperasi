@@ -88,5 +88,14 @@ class Pengeluaranmodel extends CI_Model{
 		$this->db->delete('uangkeluar');
 	}
 
+	function CetakPengeluaran($no_tran){
+		$qry  = "SELECT * from uangkeluar WHERE no_tran='$no_tran'";
+
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
 }
 ?>

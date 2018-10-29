@@ -16,7 +16,6 @@
                           <a class="dropdown-item" href="<?php echo base_url();?>member/shortdept">Departement</a>
                           <a class="dropdown-item" href="<?php echo base_url();?>member/shortanggota">Status Anggota</a>
                           <a class="dropdown-item" href="<?php echo base_url();?>member/shortpinjamanbulan">Pinjaman Bulan</a>
-                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortpinjamanmember">Pinjaman Member</a>
                           <a class="dropdown-item" href="<?php echo base_url();?>member/shortpeminjambaru">Peminjam Baru</a>
                         </div>
                     </td>

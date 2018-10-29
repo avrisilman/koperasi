@@ -10,7 +10,7 @@
                 <table>
                   <tr>
                     <td><a href="<?php echo base_url();?>pengeluaran/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                     <td><input type="text" class="form-control" placeholder="Masukan Nama/Nama GL" name="nama" value="<?php echo $this->input->post('nama');?>" ></td>
+                     <td><input type="text" class="form-control" placeholder="Masukan Nama / Nama GL" name="nama" value="<?php echo $this->input->post('nama');?>" ></td>
                     <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Search" ></td>
                   </tr>
                 </table>
@@ -45,7 +45,7 @@
                         <td><?php echo $value->ket;?></td>
                         
                         <td class="td-actions text-right">
-                           <a href="<?php echo site_url('pengeluaran/download/')."?pengeluaran=".$value->no_tran; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
+                           <a href="<?php echo site_url('pengeluaran/CetakPengeluaran/')."?pengeluaran=".$value->no_tran; ?>"><i class="tim-icons icon-cloud-download-93" ></i></a>
                           &nbsp;&nbsp;|&nbsp;&nbsp;
                           <a href="<?php echo site_url('pengeluaran/edit/')."?pengeluaran=".$value->no_tran; ?>"><i class="tim-icons icon-pencil" ></i></a>
                           &nbsp;&nbsp;|&nbsp;&nbsp;

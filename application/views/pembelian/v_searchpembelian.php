@@ -7,18 +7,19 @@
                 <h4 class="card-title">LIST PEMBELIAN ASET</h4>
                 
              
-                <table>
+                 <table>
                   <tr>
                     <?php echo form_open("pembelian/search");?>    
                     <td><a href="<?php echo base_url();?>pembelian/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                      <td><input type="text" class="form-control" placeholder="Masukan Nama Aset" name="nama" value="<?php echo $this->input->post('nama');?>" ></td>
                     <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Search" ></td>
-                     <?php echo form_close(); ?>  
+                     <?php echo form_close(); ?>
+                    <?php echo form_open("pembelian/CetakPembelian");?>     
                     <td>&nbsp;&nbsp;</td>
-                     <td><input type="date" class="form-control" name="awal" value="<?php echo $this->input->post('awal');?>" ></td>
-                      <td><input type="date" class="form-control" name="akhir" value="<?php echo $this->input->post('akhir');?>" ></td>
+                     <td><input type="date" class="form-control" name="from" value="<?php echo $this->input->post('from');?>" ></td>
+                      <td><input type="date" class="form-control" name="to" value="<?php echo $this->input->post('to');?>" ></td>
                     <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Download" ></td>
-
+                    <?php echo form_close(); ?>
                   </tr>
                 </table>
            

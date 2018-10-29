@@ -10,20 +10,21 @@
             <table>
               <tr>
                <td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Shoty By</button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Bulan</a>
-                  <a class="dropdown-item" href="#">Jenis Kelamin</a>
-                  <a class="dropdown-item" href="#">Departement</a>
-                  <a class="dropdown-item" href="#">Status Anggota</a>
-                </div>
-              </td>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortbybulan">Member Bulan</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortjk">Jenis Kelamin</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortdept">Departement</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortanggota">Status Anggota</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortpinjamanbulan">Pinjaman Bulan</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>member/shortpeminjambaru">Peminjam Baru</a>
+                        </div>
+                    </td>
               <td><a href="<?php echo base_url();?>member/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td><input type="text" class="form-control" placeholder="Masukan Nama" name="nama" value="<?php echo $this->input->post('nama');?>" ></td>
               <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Search" ></td>
             </tr>
           </table>
           <?php echo form_close(); ?> 
-
 
         </div>
         <div class="card-body">
@@ -79,7 +80,7 @@
 
    <div class="row">
     <div class="col-md-12">
-      <div class="card ">
+     <!--  <div class="card ">
         <div class="card-header">
           <h4 class="card-title">LIST SIMPANAN</h4>
         </div>
@@ -120,6 +121,8 @@
                         <td><?php echo $value->status;?></td>
                         <td class="td-actions text-right">
                           <a href="<?php echo site_url('simpanan/delete/')."?angsuran=".$value->member_id; ?>"><i class="tim-icons icon-trash-simple"></i></a>
+                          |
+                          <a href="<?php echo site_url('simpanan/cetak/')."?angsuran=".$value->member_id; ?>"><i class="tim-icons icon-cloud-download-93"></i></a>
                         </td>
 
                       </tr>
@@ -135,7 +138,7 @@
             </div>
           </div>
 
-        </div>
+        </div> -->
       </div>
 
     </div>

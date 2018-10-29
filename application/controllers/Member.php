@@ -106,6 +106,34 @@ class Member extends CI_controller {
 			$this->Membermodel->edit($member_id);
 			redirect('member','refresh');
 		}
+		elseif ($this->input->post('simpan')=="Cetak By Bulan") {
+			$from = $this->input->post('from');
+			$to   = $this->input->post('to');
+			$result=$this->Membermodel->CetakByBulan($from, $to);
+		 	$data['member']=$result['data'];
+		 	$this->load->view('member/v_cetakshortbybulan', $data);
+		} elseif ($this->input->post('simpan') == "Cetak Short By Jenis Kelamin") {
+			$sex   = $this->input->post('sex');
+			$result=$this->Membermodel->CetakByGender($sex);
+		 	$data['gender']=$result['data'];
+		 	$this->load->view('member/v_cetakshortbygender', $data);
+		} elseif ($this->input->post('simpan') == "Cetak Short By Dept") {
+			$dept   = $this->input->post('dept');
+			$result=$this->Membermodel->CetakByDept($dept);
+		 	$data['dept']=$result['data'];
+		 	$this->load->view('member/v_cetakshortbydept', $data);
+		} elseif ($this->input->post('simpan') == "Cetak Short By Status") {
+			$status   = $this->input->post('status');
+			$result=$this->Membermodel->CetakByStatus($status);
+		 	$data['anggota']=$result['data'];
+		 	$this->load->view('member/v_cetakshortbystatus', $data);
+		} elseif ($this->input->post('simpan') == "Cetak Peminjam Baru") {
+			$from = $this->input->post('from');
+			$to   = $this->input->post('to');
+			$result=$this->Membermodel->CetakByPeminjamBaru($from, $to);
+		 	$data['pinjaman']=$result['data'];
+		 	$this->load->view('member/v_cetakshortbypeminjambaru', $data);
+		}
 	}
 
 	function edit(){
@@ -149,6 +177,13 @@ class Member extends CI_controller {
 
 	function shortpeminjambaru(){
 		$this->load->view('member/v_shortpeminjambaru');
+	}
+
+	function CetakSimpanan(){
+		$member_id=$this->input->get('member');
+		$result=$this->Membermodel->CetakSimpanan($member_id);
+		$data['simpanan']=$result['data'];
+		$this->load->view('member/v_cetaksimpanan', $data);
 	}
 
 

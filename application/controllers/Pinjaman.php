@@ -64,6 +64,9 @@ class Pinjaman extends CI_controller {
 		 // angsuran
 		 $result=$this->Pinjamanmodel->search_angsuran($nama);
 		 $data['angsuran']=$result['data'];
+
+		 $result=$this->Pinjamanmodel->perdana($nama);
+		 $data['member']=$result['data'];
 		 // withdrawal
 		 $result=$this->Pinjamanmodel->withdrawal($nama);
 		 $data['withdrawal']=$result['data'];
@@ -86,6 +89,9 @@ class Pinjaman extends CI_controller {
 		 // angsuran
 		 $result=$this->Pinjamanmodel->search_angsuran($nama);
 		 $data['angsuran']=$result['data'];
+
+		 $result=$this->Pinjamanmodel->perdana($nama);
+		 $data['member']=$result['data'];
 		 // withdrawal
 		 $result=$this->Pinjamanmodel->withdrawal($nama);
 		 $data['withdrawal']=$result['data'];
@@ -165,6 +171,28 @@ class Pinjaman extends CI_controller {
 		$this->Pinjamanmodel->Deletewithdrawal($no_tran);
 		redirect('pinjaman/search_detail','refresh');
 	}
+
+	function CetakPinjaman(){
+		$member_id=$this->input->get('pinjaman');
+		$result=$this->Pinjamanmodel->CetakPinjaman($member_id);
+		$data['pinjaman']=$result['data'];
+		$this->load->view('pinjaman/v_cetakshortbypinjamanbulan', $data);
+	}
+
+	function CetakSimpanan(){
+		$no_tran=$this->input->get('pinjaman');
+		$result=$this->Pinjamanmodel->CetakSimpanan($no_tran);
+		$data['simpanan']=$result['data'];
+		$this->load->view('pinjaman/v_cetaksimpanan', $data);
+	}
+
+	function CetakPenarikan(){
+		$id_keluar=$this->input->get('pinjaman');
+		$result=$this->Pinjamanmodel->CetakPenarikan($id_keluar);
+		$data['pengeluaran']=$result['data'];
+		$this->load->view('pinjaman/v_cetakpengeluaran', $data);
+	}
+
 
 }
 ?>

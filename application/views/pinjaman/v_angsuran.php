@@ -10,15 +10,8 @@
             <?php echo form_open("pinjaman/search");?>    
             <table>
               <tr>
-               <td>
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Shoty By</button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Bulan</a>
-                  <a class="dropdown-item" href="#">Member</a>
-                  <a class="dropdown-item" href="#">Peminjam Baru/Bulan</a>
-                </div>
-              </td>
-              <td>&nbsp;&nbsp;<a href="<?php echo base_url();?>pinjaman/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+             
+             <!--  <td>&nbsp;&nbsp;<a href="<?php echo base_url();?>pinjaman/input"><i class="tim-icons icon-simple-add" style="font-size: 30px;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
               <td><input type="text" class="form-control" placeholder="Masukan Nama" name="nama" value="<?php echo $this->input->post('nama');?>" ></td>
               <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Search" ></td>
 
@@ -68,16 +61,13 @@
                       <a href="<?php echo site_url('pinjaman/edit/')."?pinjaman=".$value->no_pinjam; ?>"><i class="tim-icons icon-pencil" ></i></a>
                       &nbsp;&nbsp;|&nbsp;&nbsp;
                       <a href="<?php echo site_url('pinjaman/delete/')."?pinjaman=".$value->member_id; ?>"><i class="tim-icons icon-trash-simple"></i></a>
+                      &nbsp;|&nbsp;
+                       <a href="<?php echo site_url('pinjaman/CetakPinjaman/')."?pinjaman=".$value->member_id; ?>"><i class="tim-icons icon-cloud-download-93"></i></a>
                     </td>
                   </tr>
                   <?php $no++;}?>
                 </tbody>
               </table>
-
-
-
-            
-
 
             </div>
           </div>
@@ -114,7 +104,6 @@
               </tr>
             </thead>
             <tbody>
-              
               <?php
               $no = 1;
               foreach($angsuran as $value){
@@ -133,7 +122,32 @@
                   <td style="font-size: 11px;"><?php echo number_format($value->simrela,2,',','.');?></td>
                   <td class="td-actions text-right">
 
-                    <a href="<?php echo site_url('pinjaman/cetak/')."?pinjaman=".$value->no_pinjam; ?>"><i class="tim-icons icon-cloud-download-93"></i></a> &nbsp; | &nbsp;
+                   <a href="<?php echo site_url('pinjaman/CetakSimpanan/')."?pinjaman=".$value->no_tran; ?>"><i class="tim-icons icon-cloud-download-93"></i></a> &nbsp; | &nbsp;
+                    
+                    <a href="<?php echo site_url('pinjaman/delete/')."?pinjaman=".$value->no_pinjam; ?>"><i class="tim-icons icon-trash-simple"></i></a>
+                  </td>
+                </tr>
+                <?php $no++;}?>
+
+                 <?php
+                  $no = 1;
+                  foreach($member as $value){
+                 ?> 
+                <tr>
+                  <td style="font-size: 11px;"></td>
+                  <td style="font-size: 11px;"></td>
+                  <td style="font-size: 11px;"></td>
+                  <td style="font-size: 11px;background-color: #828282;">Simpanan Perdana</td>
+                  <td style="font-size: 11px;background-color: #828282;"><?php echo $value->tanggalangs?></td>
+                  <td style="font-size: 11px;background-color: #828282;"></td>
+                  <td style="font-size: 11px;background-color: #828282;"></td>
+                  <td style="font-size: 11px;background-color: #828282;"></td>
+                  <td style="font-size: 11px;background-color: #828282;"><?php echo number_format($value->simpokok,2,',','.');?></td>
+                  <td style="font-size: 11px;background-color: #828282;"><?php echo number_format($value->simwajib,2,',','.');?></td>
+                  <td style="font-size: 11px;background-color: #828282;"><?php echo number_format($value->simrela,2,',','.');?></td>
+                  <td class="td-actions text-right">
+
+                    <a href="<?php echo site_url('pinjaman/CetakSimpanan/')."?pinjaman=".$value->no_tran; ?>"><i class="tim-icons icon-cloud-download-93"></i></a> &nbsp; | &nbsp;
                     <a href="<?php echo site_url('pinjaman/delete/')."?pinjaman=".$value->no_pinjam; ?>"><i class="tim-icons icon-trash-simple"></i></a>
                   </td>
                 </tr>
@@ -175,7 +189,11 @@
                   <td style="font-size: 11px;"><?php echo number_format($value->simpokok,2,',','.');?></td>
                   <td style="font-size: 11px;"><?php echo number_format($value->simwajib,2,',','.');?></td>
                   <td style="font-size: 11px;"><?php echo number_format($value->simrela,2,',','.');?></td>
-                  <td style="font-size: 11px;"><a href="<?php echo site_url('pinjaman/deletewithdrawal/')."?pinjaman=".$value->id_keluar; ?>"><i class="tim-icons icon-trash-simple"></i></a></td>
+                  <td style="font-size: 11px;">
+                    <a href="<?php echo site_url('pinjaman/CetakPenarikan/')."?pinjaman=".$value->id_keluar; ?>"><i class="tim-icons icon-cloud-download-93"></i></a>
+                      &nbsp;&nbsp;|&nbsp;&nbsp;
+                     <a href="<?php echo site_url('pinjaman/deletewithdrawal/')."?pinjaman=".$value->id_keluar; ?>"><i class="tim-icons icon-trash-simple"></i></a>
+                  </td>
                   <td style="font-size: 11px;"></td>
                 </tr>
                 <?php $no++;}?>
@@ -219,6 +237,7 @@
                 </tr>
                 <?php $no++;}?>
               </tbody> 
+
             </table>
 
           </div>

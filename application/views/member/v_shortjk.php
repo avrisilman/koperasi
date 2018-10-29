@@ -13,7 +13,7 @@
                   <table>
                     <tr>
                       <td>
-                        <select class="form-control">
+                        <select class="form-control" name="sex">
                           <option style="background-color: #000000;" value="Pria">Pria</option>
                           <option style="background-color: #000000;" value="Wanita">Wanita</option>
                         </select>

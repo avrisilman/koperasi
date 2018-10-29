@@ -14,7 +14,7 @@
 
                     <td style="color: #d45151;">&nbsp;&nbsp;To</td>
                     <td><input type="date" class="form-control" name="to" value="<?php echo $this->input->post('to');?>" ></td>
-                     <td><input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary btn-block" value="Cetak Peminjam Baru" ></td>
+                     <td><input id="btn_submit" name="simpan" type="submit" class="btn btn-primary btn-block" value="Cetak Peminjam Baru" ></td>
                   </tr>
                 </table>
             <?php echo form_close(); ?> 

@@ -103,5 +103,67 @@ class Membermodel extends CI_Model{
 		$this->db->delete('member');
 	}
 
+	function CetakByBulan($from, $to){
+		$qry  = "SELECT * from member where tglgabung between '$from' and '$to'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakByGender($sex){
+		$qry  = "SELECT * from member where sex='$sex'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakByDept($dept){
+		$qry  = "SELECT * from member where dept='$dept'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakByStatus($status){
+		$qry  = "SELECT * from member where aktif='$status'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakByPinjamanBulan($from, $to){
+		$qry  = "SELECT A.*, B.* from member A INNER JOIN pinjaman B
+					ON A.member_id=B.member_id  
+					where B.tanggal between '$from' and '$to' and A.aktif='aktif'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakByPeminjamBaru($from, $to){
+		$qry  = "SELECT A.*, B.* from member A INNER JOIN pinjaman B
+					ON A.member_id=B.member_id  
+					where B.tanggal between '$from' and '$to' and A.aktif='aktif'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
+	function CetakSimpanan($from, $to){
+		$qry  = "SELECT A.*, B.* from member A INNER JOIN pinjaman B
+					ON A.member_id=B.member_id  
+					where B.tanggal between '$from' and '$to' and A.aktif='aktif'";
+		$query = $this->db->query($qry);
+		$result['data']=$query->result();
+		//echo nl2br($qry);die();
+		return $result;
+	}
+
 }
 ?>

@@ -36,11 +36,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      $no = 1;
-                        foreach($member_sewa as $value){
-                      ?> 
+
+                       <?php if(empty($member_sewa)){ ?>
                       <tr>
+                        <td colspan="6">Data Kosong</td>
+                      </tr>
+                    <?php }else{
+                      $no=0;
+                      foreach($member_sewa as $value){ $no++;?>
+                        <tr>
                        
                         <td>
                           <?php echo $value->no_sewa;?>
@@ -64,7 +68,11 @@
                           <a href="<?php echo site_url('membersewa/delete/')."?member_sewa=".$value->no_sewa; ?>"><i class="tim-icons icon-trash-simple"></i></a>
                         </td>
                       </tr>
-                      <?php $no++;}?>
+                          <?php
+                        }
+                      }
+                      ?>
+
                     </tbody>
                   </table>
 

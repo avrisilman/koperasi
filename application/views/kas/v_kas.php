@@ -67,11 +67,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      $no = 1;
-                        foreach($kas as $value){
-                      ?> 
+                      
+                    <?php if(empty($kas)){ ?>
                       <tr>
+                        <td colspan="6">Data Kosong</td>
+                      </tr>
+                    <?php }else{
+                      $no=0;
+                      foreach($kas as $value){ $no++;?>
+                        <tr>
                        
                         <td>
                           <?php echo $value->nogl;?>
@@ -88,7 +92,11 @@
                           <a href="<?php echo site_url('kas/delete/')."?kas=".$value->id; ?>"><i class="tim-icons icon-trash-simple"></i></a>
                         </td>
                       </tr>
-                      <?php $no++;}?>
+                          <?php
+                        }
+                      }
+                      ?>
+
                     </tbody>
                   </table>
 

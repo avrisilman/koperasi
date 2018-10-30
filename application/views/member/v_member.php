@@ -43,11 +43,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      $no = 1;
-                        foreach($member as $value){
-                      ?> 
+
+                       <?php if(empty($member)){ ?>
                       <tr>
+                        <td colspan="6">Data Kosong</td>
+                      </tr>
+                    <?php }else{
+                      $no=0;
+                      foreach($member as $value){ $no++;?>
+                        <tr>
                         <td><?php echo $no;?></td>
                        <!--  <td><?php echo $value->member_id;?></td> -->
                         <td><?php echo $value->nama;?></td>
@@ -60,7 +64,11 @@
                           <a href="<?php echo site_url('member/delete/')."?member=".$value->member_id; ?>"><i class="tim-icons icon-trash-simple"></i></a>
                         </td> -->
                       </tr>
-                      <?php $no++;}?>
+                          <?php
+                        }
+                      }
+                      ?>
+
                     </tbody>
                   </table>
 

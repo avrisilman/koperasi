@@ -42,11 +42,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      $no = 1;
-                        foreach($pembelian as $value){
-                      ?> 
+                       <?php if(empty($pembelian)){ ?>
                       <tr>
+                        <td colspan="6">Data Kosong</td>
+                      </tr>
+                    <?php }else{
+                      $no=0;
+                      foreach($pembelian as $value){ $no++;?>
+                       <tr>
                        
                         <td><?php echo $value->tgl_beli;?></td>
                         <td><?php echo $value->tgl_pakai;?></td>
@@ -63,7 +66,11 @@
                           <a href="<?php echo site_url('pembelian/delete/')."?pembelian=".$value->id; ?>"><i class="tim-icons icon-trash-simple"></i></a>
                         </td>
                       </tr>
-                      <?php $no++;}?>
+                          <?php
+                        }
+                      }
+                      ?>
+
                     </tbody>
                   </table>  
 

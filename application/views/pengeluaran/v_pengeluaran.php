@@ -32,11 +32,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      $no = 1;
-                        foreach($uangkeluar as $value){
-                      ?> 
+                       <?php if(empty($uangkeluar)){ ?>
                       <tr>
+                        <td colspan="6">Data Kosong</td>
+                      </tr>
+                    <?php }else{
+                      $no=0;
+                      foreach($uangkeluar as $value){ $no++;?>
+                        <tr>
                        
                         <td><?php echo $value->nama;?></td>
                         <td><?php echo $value->tanggal;?></td>
@@ -50,7 +53,11 @@
                           <a href="<?php echo site_url('pengeluaran/delete/')."?pengeluaran=".$value->no_tran; ?>"><i class="tim-icons icon-trash-simple"></i></a>
                         </td>
                       </tr>
-                      <?php $no++;}?>
+                          <?php
+                        }
+                      }
+                      ?>
+
                     </tbody>
                   </table>
 
